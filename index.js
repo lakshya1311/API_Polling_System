@@ -1,7 +1,12 @@
 const express = require('express');
+const connectWithDb = require('./config/db');
 require('dotenv').config();
 const app = express();
 const { PORT } = process.env;
+
+// connect with database
+connectWithDb();
+
 
 // use express router
 app.use('/', require('./routes'));
