@@ -7,6 +7,8 @@ const { PORT } = process.env;
 // connect with database
 connectWithDb();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // use express router
 app.use('/', require('./routes'));
