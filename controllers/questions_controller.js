@@ -72,3 +72,33 @@ module.exports.createOptions = async (req, res) => {
     });
   }
 };
+
+module.exports.deleteQuestion = async (req, res) => {
+  try {
+    const questionId = req.params.id;
+
+    const question = await Question.findById(questionId);
+
+    if (!question) {
+      return res.status(400).json({
+        message: 'question not found',
+      });  
+    }
+
+    // delete all the options of the question
+    await Option.deleteMany({ question: questionId });
+
+    // delete question
+    await Question.findByIdAndDelete(questionId);
+
+    return res.status(200).json({
+      success: true,
+      message: "question and its options deleted successfully!"
+    })
+  } catch (err) {
+    console.log('*******', err);
+    return res.status(500).json({
+      message: 'Internal server error',
+    });
+  }
+};
