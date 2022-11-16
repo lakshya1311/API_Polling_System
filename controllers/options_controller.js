@@ -13,6 +13,13 @@ module.exports.deleteOption = async (req, res) => {
       });
     }
 
+    // if option has atleast one vote it won't be deleted
+    if (option.votes > 0) {
+      return res.status(400).json({
+        message: 'this option has atleast one vote',
+      });
+    }
+
     const question = await Question.findById(option.question);
 
     // remove reference of this option from question's options field
