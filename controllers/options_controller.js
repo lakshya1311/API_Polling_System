@@ -45,10 +45,16 @@ module.exports.addVote = async (req, res) => {
       });
     }
 
-    // add one to the value of votes
-    option.votes +=  1;
+    // add one to the value of votes of option
+    option.votes += 1;
 
     option.save();
+
+    // add one to the value of total votes of question
+    const question = await Question.findById(option.question);
+    question.totalVotes += 1;
+
+    question.save();
 
     return res.status(200).json({
       success: true,

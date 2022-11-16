@@ -85,6 +85,13 @@ module.exports.deleteQuestion = async (req, res) => {
       });
     }
 
+    // if even one of the options of question has votes. It won't be deleted
+    if (question.totalVotes > 0) {
+      return res.status(400).json({
+        message: 'atleast one of options has votes',
+      });
+    }
+
     // delete all the options of the question
     await Option.deleteMany({ question: questionId });
 
@@ -104,21 +111,29 @@ module.exports.deleteQuestion = async (req, res) => {
 };
 
 module.exports.viewQuestion = async (req, res) => {
-  const questionId = req.params.id;
+  try {
+    const questionId = req.params.id;
 
-  const question = await Question.findById(questionId).populate({
-    path: 'options',
-    model: 'Option',
-  });
+    // populate question with all of its options
+    const question = await Question.findById(questionId).populate({
+      path: 'options',
+      model: 'Option',
+    });
 
-  if (!question) {
-    return res.status(400).json({
-      message: 'question not found',
+    if (!question) {
+      return res.status(400).json({
+        message: 'question not found',
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      question,
+    });
+  } catch (err) {
+    console.log('*******', err);
+    return res.status(500).json({
+      message: 'Internal server error',
     });
   }
-
-  return res.status(200).json({
-    success: true,
-    question,
-  });
 };

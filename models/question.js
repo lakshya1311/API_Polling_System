@@ -7,6 +7,10 @@ const questionSchema = new mongoose.Schema(
       required: true,
     },
     options: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Option' }],
+    totalVotes: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
