@@ -7,6 +7,7 @@ const { PORT } = process.env;
 // connect with database
 connectWithDb();
 
+// regular middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

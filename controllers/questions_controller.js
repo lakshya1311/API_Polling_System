@@ -1,6 +1,7 @@
 const Question = require('../models/question');
 const Option = require('../models/option');
 
+// To create a question
 module.exports.createQuestion = async (req, res) => {
   try {
     const { title } = req.body;
@@ -27,6 +28,7 @@ module.exports.createQuestion = async (req, res) => {
   }
 };
 
+// To create an option
 module.exports.createOptions = async (req, res) => {
   try {
     const questionId = req.params.id;
@@ -73,6 +75,7 @@ module.exports.createOptions = async (req, res) => {
   }
 };
 
+// To delete a question
 module.exports.deleteQuestion = async (req, res) => {
   try {
     const questionId = req.params.id;
@@ -110,6 +113,7 @@ module.exports.deleteQuestion = async (req, res) => {
   }
 };
 
+// To view a question and it's options
 module.exports.viewQuestion = async (req, res) => {
   try {
     const questionId = req.params.id;

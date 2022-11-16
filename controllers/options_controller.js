@@ -1,6 +1,7 @@
 const Option = require('../models/option');
 const Question = require('../models/question');
 
+// Delete an option
 module.exports.deleteOption = async (req, res) => {
   try {
     const optionId = req.params.id;
@@ -40,6 +41,7 @@ module.exports.deleteOption = async (req, res) => {
   }
 };
 
+// To increase the count of votes
 module.exports.addVote = async (req, res) => {
   try {
     const optionId = req.params.id;
