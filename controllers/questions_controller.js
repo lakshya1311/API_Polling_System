@@ -82,7 +82,7 @@ module.exports.deleteQuestion = async (req, res) => {
     if (!question) {
       return res.status(400).json({
         message: 'question not found',
-      });  
+      });
     }
 
     // delete all the options of the question
@@ -93,12 +93,32 @@ module.exports.deleteQuestion = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "question and its options deleted successfully!"
-    })
+      message: 'question and associated options deleted successfully!',
+    });
   } catch (err) {
     console.log('*******', err);
     return res.status(500).json({
       message: 'Internal server error',
     });
   }
+};
+
+module.exports.viewQuestion = async (req, res) => {
+  const questionId = req.params.id;
+
+  const question = await Question.findById(questionId).populate({
+    path: 'options',
+    model: 'Option',
+  });
+
+  if (!question) {
+    return res.status(400).json({
+      message: 'question not found',
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    question,
+  });
 };
