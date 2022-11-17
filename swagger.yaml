@@ -5,10 +5,9 @@ info:
   version: 1.0.0
 
 servers:
-  - url: http://localhost:8000
-    description: Localhost version of app
-  - url: https://localhost:8000
-    description: This is just a dummy api url, it doesn't work
+  - url: https://polling-system-api0.herokuapp.com
+    description: live url hosted on heroku
+  
 
 
 paths:
