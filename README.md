@@ -3,7 +3,7 @@
 This is a backend api for creating questions and adding options to a specific question. Options can be voted. Questions, options can be deleted and questions can be viewed with all of their options.
 
 ###  Hosted link: [Polling System API](https://polling-system-api.onrender.com/)
-###  Documentation : [API documentation](https://polling-system-api.onrender.com//api-docs/)
+###  Documentation : [API documentation](https://polling-system-api.onrender.com/api-docs/)
 
 ## Polling system Features
 
