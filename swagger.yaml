@@ -5,8 +5,8 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://polling-system-api0.herokuapp.com
-    description: live url hosted on heroku
+  - url: https://polling-system-api.onrender.com/
+    description: live url hosted on render
   
 
 
