@@ -5,10 +5,10 @@ const app = express();
 const { PORT } = process.env;
 
 // for swagger documentation
-const swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./swagger.yaml');
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// const swaggerUi = require('swagger-ui-express');
+// const YAML = require('yamljs');
+// const swaggerDocument = YAML.load('./swagger.yaml');
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // connect with database
 connectWithDb();
@@ -24,5 +24,5 @@ app.listen(PORT || 5000, (err) => {
   if (err) {
     console.log(`Error in running the server : ${err}`);
   }
-  console.log(`Server is up and running at ${PORT}`);
+  console.log(`Server is up and running at ${PORT || 5000}`);
 });
